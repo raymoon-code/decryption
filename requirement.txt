@@ -1,0 +1,4 @@
+Flask==2.1.0
+werkzeug==2.0.2
+cryptography==35.0.0
+quart==0.15.1
