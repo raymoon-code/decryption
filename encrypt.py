@@ -54,6 +54,14 @@ def enter_password():
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def perform_encryption(input_file_path, output_file_path, key):
+    cipher = Fernet(key)
+    with open(input_file_path, 'rb') as f:
+        data = f.read()
+    encrypted_data = cipher.encrypt(data)
+    with open(output_file_path, 'wb') as f:
+        f.write(encrypted_data)
+
 def perform_decryption(key,input_file, output_file):
     # Perform decryption logic here and save the decrypted file to output_file_path
     decrypt_file(key, input_file, output_file)
@@ -88,8 +96,9 @@ def index():
             output_file_path = os.path.join(app.config['UPLOAD_FOLDER'], output_file)
 
             if action == 'encrypt':
-                encrypt_file(key, input_file, output_file)
-                flash("File encrypted successfully.")
+                perform_encryption(input_file_path, output_file_path, key)
+                flash('File encrypted successfully')
+                return send_file(output_file_path, as_attachment=True)
             elif action == 'decrypt':
                 perform_decryption(key,input_file_path, output_file_path)
                 flash('File decrypted successfully')
