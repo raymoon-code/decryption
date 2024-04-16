@@ -10,10 +10,7 @@
          "src" : "/(.*)",
          "dest" : "main.py"
       }
-   ] ,
+   ] 
 
-   
-   "rewrites": [         
-           { "source": "/(.*)","destination": "/" }   
-      ]
+
 }
