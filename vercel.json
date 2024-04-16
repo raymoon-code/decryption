@@ -1,15 +1,7 @@
 {
-   
-      "rewrites": [
+   "Rewrites": [
             {
-            "source": "/(.*)","destination": "main.py"
+            "source": "/(.*)","destination": "/"
       }
       ]
-  ,
-    "routes":[{
-        "src": "/(.*)",
-        "dest": "main.py"
-    }]
-  
- 
 }
