@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="password"],
+        select {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            color: #dc3545;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>File Encryption/Decryption</h1>
+        <form method="post" action="/" enctype="multipart/form-data">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required><br>
+            <label for="input_file">Input File:</label>
+<input type="file" name="input_file" id="input_file" accept="video/*, image/*" required><br>
+            <label for="output_file">Output File:</label>
+            <input type="text" name="output_file" id="output_file" required><br>
+            <label for="action">Action:</label>
+            <select name="action" id="action" required>
+                <option value="encrypt">Encrypt</option>
+                <option value="decrypt">Decrypt</option>
+            </select><br>
+            <input type="submit" value="Submit">
+        </form>
+        <div id="flashedMessages" class="message">
+            <!-- Flashed messages will be displayed here -->
+        </div>
+
+       
+
+        
+    </div>
+    <script>
+        // Get flashed messages from the URL query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const flashedMessages = urlParams.get('messages');
+
+        // Display flashed messages
+        if (flashedMessages) {
+            const flashedMessagesDiv = document.getElementById('flashedMessages');
+            flashedMessages.split(',').forEach(message => {
+                const label = document.createElement('label');
+                label.textContent = message;
+                flashedMessagesDiv.appendChild(label);
+            });
+        }
+    </script>
+    
+</body>
+</html>
